@@ -43,3 +43,12 @@ def debug(func):
         print(f"{func.__name__!r} returned {value!r}")
         return value
     return wrapper_debug
+
+
+def slow_down(func):
+    """ sleep 1 sec before call func """
+    @functools.wraps(func)
+    def wrapper_slow_down(*args, **kwargs):
+        time.sleep(1)
+        return func(*args, **kwargs)
+    return wrapper_slow_down

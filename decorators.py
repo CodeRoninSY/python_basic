@@ -6,7 +6,8 @@ Decorators example
 
 '''
 
-from decorlib import decorator, timer, debug
+import math
+from decorlib import decorator, timer, debug, slow_down
 
 #  # Decorators
 #  def decor(func):
@@ -59,26 +60,26 @@ from decorlib import decorator, timer, debug
 #  selam("Mondo")
 
 
-# @decorator
-@decorator
-def r_selam(nome):
-    print("Costruire il saluto".rjust(40, u'\u00b7'))
-    return f"Ciao {nome}"
-
-
-s_sy= r_selam("Sener")
-print(s_sy.rjust(18, u'\u2219'))
-
-
-# @timer decorator
-@timer
-def waste_some_time(num_times):
-    for _ in range(num_times):
-        sum([i**2 for i in range(10000)])
-
-
-waste_some_time(1)
-waste_some_time(51)
+#  # @decorator
+#  @decorator
+#  def r_selam(nome):
+#      print("Costruire il saluto".rjust(40, u'\u00b7'))
+#      return f"Ciao {nome}"
+#
+#
+#  s_sy= r_selam("Sener")
+#  print(s_sy.rjust(18, u'\u2219'))
+#
+#
+#  # @timer decorator
+#  @timer
+#  def waste_some_time(num_times):
+#      for _ in range(num_times):
+#          sum([i**2 for i in range(10000)])
+#
+#
+#  waste_some_time(1)
+#  waste_some_time(51)
 
 
 # Historic Person Data
@@ -160,7 +161,6 @@ DH = {
         'service_year': "1064-1092",
         'rank': "Grand Vizier"
     },
-
 }
 
 # printout DH dictionary
@@ -194,3 +194,26 @@ make_greeting(DH['p3']['name'], DH['p3']['nick'],
 make_greeting(DH['p4']['name'], DH['p4']['nick'],
               DH['p4']['father'],
               age=DH['p4']['died'] - DH['p4']['born'])
+
+
+# math library example
+math.factorial = debug(math.factorial)
+
+def appr_e(terms=18):
+    return sum(1 / math.factorial(n) for n in range(terms))
+
+# approximate e(n)
+appr_e(20)
+
+
+# slow-down example
+@slow_down
+def countdown(from_num):
+    if from_num < 1:
+        print("Liftoff!")
+    else:
+        print(from_num)
+        countdown(from_num - 1)
+
+
+countdown(5)
