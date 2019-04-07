@@ -200,23 +200,23 @@ def make_greeting(*name, age=None):
 
 
 make_greeting(DH['p1']['name'], DH['p1']['nick'],
-              DH['p1']['father'],
+              DH['p1']['father'], DH['p1']['title'],
               age=DH['p1']['died'] - DH['p1']['born'])
 
 make_greeting(DH['p2']['name'], DH['p2']['nick'],
-              DH['p2']['father'],
+              DH['p2']['father'], DH['p2']['title'],
               age=DH['p2']['died'] - DH['p2']['born'])
 
 make_greeting(DH['p3']['name'], DH['p3']['nick'],
-              DH['p3']['father'],
+              DH['p3']['father'], DH['p3']['title'],
               age=DH['p3']['died'] - DH['p3']['born'])
 
 make_greeting(DH['p4']['name'], DH['p4']['nick'],
-              DH['p4']['father'],
+              DH['p4']['father'], DH['p4']['title'],
               age=DH['p4']['died'] - DH['p4']['born'])
 
 make_greeting(DH['p5']['name'], DH['p5']['nick'],
-              DH['p5']['father'],
+              DH['p5']['father'], DH['p5']['title'],
               age=DH['p5']['died'] - DH['p5']['born'])
 
 # math library example
@@ -226,7 +226,7 @@ def appr_e(terms=18):
     return sum(1 / math.factorial(n) for n in range(terms))
 
 # approximate e(n)
-appr_e(20)
+appr_e(5)
 
 
 # slow-down example
@@ -240,3 +240,47 @@ def countdown(from_num):
 
 
 countdown(5)
+
+
+# Decorating Classes
+class Circle:
+    def __init__(self, radius):
+        self._radius = radius
+
+    @property
+    def radius(self):
+        ''' get value of radius '''
+        return self._radius
+
+    @radius.setter
+    def radius(self, value):
+        ''' set radius '''
+        if value >= 0:
+            self._radius = value
+        else:
+            raise ValueError("Radius must be positive")
+
+    @property
+    def area(self):
+        ''' calculate area '''
+        return self.pi() * self.radius**2
+
+    def cylinder_volume(self, height):
+        ''' calculate volume of cylinder '''
+        return self.area * height
+
+    @classmethod
+    def unit_circle(cls):
+        ''' factory method creating a circle with radius 1 '''
+        return cls(1)
+
+    @staticmethod
+    def pi():
+        ''' value of pi '''
+        return 3.141592654
+
+
+c = Circle(5)
+print(f"c.radius: {c.radius}")
+print(f"c.area: {c.area}")
+
