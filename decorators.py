@@ -163,6 +163,12 @@ DH = {
 
 }
 
+# printout DH dictionary
+for DH_id, DH_info in DH.items():
+    print(f"\nPersonId: {DH_id}")
+    for key in DH_info:
+        print(f"\t\t{key}: {DH_info[key]}")
+
 
 # @debug
 @debug
