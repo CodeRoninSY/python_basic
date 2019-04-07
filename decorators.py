@@ -119,7 +119,7 @@ DH = {
         'born': 1432,
         'died': 1481,
         'burial': "Fatih Mosque, Istanbul",
-        'allegiance': "Ottoman Dynasty",
+        'allegiance': "Imperial House of Osman",
         'service': "Ottoman Empire",
         'service_year': "1451-1481",
         'rank': "Emperor / Padishah"
@@ -161,6 +161,26 @@ DH = {
         'service_year': "1064-1092",
         'rank': "Grand Vizier"
     },
+    'p5': {
+        'name': "Kanuni Sultan Suleyman",
+        'nick': "Muhtesem Suleyman",
+        'predecessor': "Selim I",
+        'successor': "Selim II",
+        'father': "Selim I",
+        'mother': "Hafsa Sultan",
+        'title': {
+            "Sultan of the Ottoman Empire",
+            "Custodian of the Two Holy Mosques",
+            "Ottoman Caliph"
+        },
+        'born': 1494,
+        'died': 1566,
+        'burial': "Suleymaniye Mosque, Istanbul",
+        'allegiance': "Imperial House of Osman",
+        'service': "Ottoman Empire",
+        'service_year': "1520-1566",
+        'rank': "Emperor"
+    },
 }
 
 # printout DH dictionary
@@ -195,6 +215,9 @@ make_greeting(DH['p4']['name'], DH['p4']['nick'],
               DH['p4']['father'],
               age=DH['p4']['died'] - DH['p4']['born'])
 
+make_greeting(DH['p5']['name'], DH['p5']['nick'],
+              DH['p5']['father'],
+              age=DH['p5']['died'] - DH['p5']['born'])
 
 # math library example
 math.factorial = debug(math.factorial)
