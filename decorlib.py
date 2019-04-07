@@ -9,6 +9,14 @@ import functools
 import time
 
 
+def do_twice(func):
+    @functools.wraps(func)
+    def wrapper_do_twice(*args, **kwargs):
+        func(*args, **kwargs)
+        return func(*args, **kwargs)
+    return wrapper_do_twice
+
+
 def decorator(func):
     ''' decorator func '''
     @functools.wraps(func)
@@ -52,3 +60,15 @@ def slow_down(func):
         time.sleep(1)
         return func(*args, **kwargs)
     return wrapper_slow_down
+
+
+def repeat(num_times):
+    def decorator_repeat(func):
+        @functools.wraps(func)
+        def wrapper_repeat(*args, **kwargs):
+            for _ in range(num_times):
+                value = func(*args, **kwargs)
+            return value
+        return wrapper_repeat
+    return decorator_repeat
+

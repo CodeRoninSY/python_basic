@@ -7,7 +7,9 @@ Decorators example
 '''
 
 import math
-from decorlib import decorator, timer, debug, slow_down
+from decorlib import decorator, timer, debug, slow_down, do_twice
+from decorlib import repeat
+
 
 #  # Decorators
 #  def decor(func):
@@ -284,3 +286,36 @@ c = Circle(5)
 print(f"c.radius: {c.radius}")
 print(f"c.area: {c.area}")
 
+
+class TimeWaster:
+    @debug
+    def __init__(self, max_num):
+        self.max_num = max_num
+
+    @timer
+    def waste_time(self, num_times):
+        for _ in range(num_times):
+            sum([i**2 for i in range(self.max_num)])
+
+
+tw = TimeWaster(1000)
+tw.waste_time(999)
+
+
+# nesting decorators
+@debug
+@do_twice
+def greet(name):
+    print(f"Hello {name}")
+
+
+greet("Oguz Kaan")
+
+
+# decorators with arguments
+@repeat(num_times=4)
+def greetn(name):
+    print(f"Hello {name}")
+
+
+greetn("Viva El Mundo")
