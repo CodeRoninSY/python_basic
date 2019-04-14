@@ -66,10 +66,12 @@ def timer(func):
 #  except AttributeError:
 #      pass
 
+MAXARRAYINDEX = 10000000
 
 @timer
 def MakeRandArr(array):
-    for x in range(1000000):
+    ''' MakeRandArr(array) '''
+    for _ in range(MAXARRAYINDEX):
         array.append(random.random())
     return array
 
@@ -79,6 +81,7 @@ RandArray = MakeRandArr(RandArray)
 
 @timer
 def sortArray(array):
+    ''' sortArray(array) '''
     return array.sort()
 
 SortRandArray = sortArray(RandArray)
@@ -90,9 +93,10 @@ import numpy as np
 '''
 
 mystmt = '''
-arr = np.arange(1000000)
+MAXARRAYINDEX = 10000000
+arr = np.arange(MAXARRAYINDEX)
 millSET = set(arr)
-999999 in millSET
+9999999 in millSET
 '''
 
 print(timeit.timeit(setup=setup, stmt=mystmt, number=1))
