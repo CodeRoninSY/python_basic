@@ -35,3 +35,33 @@ MIL_SET = set(arr)
 print(timeit.timeit(stmt=MYCODE2, number=1))
 
 print(timeit.timeit(setup=MYSETUP2, stmt=MYCOD3, number=1))
+
+
+MYSETUP3 = '''
+import random
+'''
+
+MYCOD4 = '''
+MILLION_RANDOM_NUMBERS = []
+def MilRandNums(arr):
+    for x in range(1000000):
+        arr.append(random.random())
+    return arr
+
+MILLION_RANDOM_NUMBERS = MilRandNums(MILLION_RANDOM_NUMBERS)
+sorted(MILLION_RANDOM_NUMBERS)
+'''
+
+MYCOD5 = '''
+MILLION_RANDOM_NUMBERS = []
+def MilRandNums(arr):
+    for x in range(1000000):
+        arr.append(random.random())
+    return arr
+
+MILLION_RANDOM_NUMBERS = MilRandNums(MILLION_RANDOM_NUMBERS)
+MILLION_RANDOM_NUMBERS.sort()
+'''
+
+print(timeit.timeit(setup=MYSETUP3, stmt=MYCOD4, number=1))
+print(timeit.timeit(setup=MYSETUP3, stmt=MYCOD5, number=1))
