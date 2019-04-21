@@ -74,6 +74,9 @@ class Hero():
     def dropItem(self, item):
         return self.inventory.remove(item)
 
+    def deleteItemN(self, n):
+        del self.inventory[n]
+
     @property
     def kill(self):
         return f"{self.name}: {self.kills} kills total"
@@ -193,10 +196,13 @@ R_HEROS = getData("heros.json", raw=True)
 
 for i, h in enumerate(R_HEROS):
     eroe = Hero(**h)
-    print(f"Hero name: {eroe.name}, kills: {eroe.kills}, health: {eroe.health},\
+    print(f"\nHero name: {eroe.name}, kills: {eroe.kills}, health: {eroe.health},\
           inventory: {eroe.inventory}")
     eroe.addKill(8)
     eroe.additem('Katana')
-    print(f"Hero name: {eroe.name}, kills: {eroe.kills}, health: {eroe.health},\
+    print(f"\nHero name: {eroe.name}, kills: {eroe.kills}, health: {eroe.health},\
           inventory: {eroe.inventory}")
-    print(f"Total heros: {Hero.numHeros}")
+    eroe.deleteItemN(-1)
+    print(f"\nHero name: {eroe.name}, kills: {eroe.kills}, health: {eroe.health},\
+          inventory: {eroe.inventory}")
+    print(f"\nTotal generated heros: {Hero.numHeros}")
