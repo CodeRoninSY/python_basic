@@ -12,7 +12,8 @@
             "clan": "Defenders",
             "country": "US",
             "inventory": ["Armor", "Sticks", "Horned mask"],
-            "archenemy": ["Wilson Fisk"]
+            "archenemy": ["Wilson Fisk"],
+            "superpower": ["Martial arts", "Hightened sense", "Resilience"]
     },
     {
             "ID": 3,
@@ -26,7 +27,98 @@
             "clan": "El family",
             "country": "US",
             "inventory": ["Body suit"],
-            "archenemy": ["General Zod", "Lex Luthor"]
+            "archenemy": ["General Zod", "Lex Luthor"],
+            "superpower": ["Invincible", "Ultra sight", "Fly", "Super strength"]
+    },
+    {
+            "ID": 4,
+            "name": "Dr. Strange",
+            "health": 100,
+            "alive": 1,
+            "level": 80,
+            "wins": 2,
+            "losses": 2,
+            "kills": 100,
+            "clan": "Sorcerer",
+            "country": "US",
+            "inventory": ["Time Stone"],
+            "archenemy": ["Thanos"],
+            "superpower": ["Sorcery", "Magic", "Time manipulation"]
+    },
+    {
+            "ID": 5,
+            "name": "Iron Man",
+            "health": 100,
+            "alive": 1,
+            "level": 100,
+            "wins": 20,
+            "losses": 2,
+            "kills": 200,
+            "clan": "Stark",
+            "country": "US",
+            "inventory": ["IronMan suit Mk14", "Arc generator", "Pepper Pots"],
+            "archenemy": ["Thanos", "Red Skull", "Ebony Maw"],
+            "superpower": ["Genius", "Engineer", "Rich"]
+    },
+    {
+            "ID": 6,
+            "name": "Spider Man",
+            "health": 100,
+            "alive": 1,
+            "level": 40,
+            "wins": 5,
+            "losses": 2,
+            "kills": 0,
+            "clan": "Parker",
+            "country": "US",
+            "inventory": ["Spider Man suit", "Camera"],
+            "archenemy": ["Thanos", "Ebony Maw", "Green Goblin", "Dr Octopus"],
+            "superpower": ["Ultra strength", "Hightened senses", "Modified genetics"]
+    },
+    {
+            "ID": 7,
+            "name": "Black Widow",
+            "health": 100,
+            "alive": 1,
+            "level": 30,
+            "wins": 20,
+            "losses": 1,
+            "kills": 50,
+            "clan": "Romanoff",
+            "country": "USSR",
+            "inventory": ["Black suit", "HK VP9", "Tranquilizer stick"],
+            "archenemy": ["Thanos", "Red Skull", "Ebony Maw"],
+            "superpower": ["Martial arts", "Cunning", "Special forces", "Intelligence"]
+    },
+    {
+            "ID": 8,
+            "name": "Hulk",
+            "health": 100,
+            "alive": 1,
+            "level": 100,
+            "wins": 20,
+            "losses": 1,
+            "kills": 100,
+            "clan": "Banner",
+            "country": "US",
+            "inventory": ["Invincible power", "Gamma radiation", "Anything smash"],
+            "archenemy": ["Thanos", "Red Skull", "Ebony Maw"],
+            "superpower": ["Ultra-extreme strength", "Indestructible"]
+    },
+    {
+            "ID": 9,
+            "name": "Batman",
+            "health": 100,
+            "alive": 1,
+            "level": 60,
+            "wins": 10,
+            "losses": 2,
+            "kills": 1000,
+            "clan": "Wayne",
+            "country": "US",
+            "inventory": ["Batman suit", "Batmobil", "Batwing", "Hitech weapons"],
+            "archenemy": ["Penguin", "Dr Pig", "Thanos", "Joker", "Superman", "General Zod", "Fish Mooney", "Ras Al-Ghul"],
+            "superpower": ["Martial arts", "Assassin", "Genius", "Extremely rich"]
     }
     ]
 }
