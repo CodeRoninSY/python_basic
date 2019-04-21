@@ -9,14 +9,14 @@ Date: <2019-04-21>
 
 '''
 import json
-from pprint import pprint
-from functools import reduce
-from operator import attrgetter, itemgetter
+#  from pprint import pprint
+#  from functools import reduce
+#  from operator import attrgetter, itemgetter
 
 
 class Hero():
     ''' Hero Class '''
-    # class defaults
+    # class properties
     ID = 0
     name = "Sunny"
     health = 100
@@ -47,25 +47,30 @@ class Hero():
             archenemy: {self.archenemy}, superpower: {self.superpower}"
 
     def __repr__(self):
-        return str({'ID': self.ID, 'name': self.name, 'health': self.health, \
-                    'alive': self.alive, 'level': self.level, 'wins': self.wins, \
-                    'losses': self.losses, 'kills': self.kills, \
-                    'clan': self.clan, 'country': self.country, \
-                    'inventory': self.inventory, 'archenemy': self.archenemy,\
+        return str({'ID': self.ID, 'name': self.name, 'health': self.health,
+                    'alive': self.alive, 'level': self.level,
+                    'wins': self.wins, 'losses': self.losses,
+                    'kills': self.kills, 'clan': self.clan,
+                    'country': self.country, 'inventory': self.inventory,
+                    'archenemy': self.archenemy,
                     'superpower': self.superpower})
 
     @property
     def enemy(self):
+        ''' enemy '''
         return self.archenemy
 
-    def addEnemy(self, rival):
+    def add_enemy(self, rival):
+        ''' add_enemy '''
         return self.archenemy.append(rival)
 
-    def delEnemy(self, rival):
+    def del_enemy(self, rival):
+        ''' del_enemy '''
         return self.archenemy.remove(rival)
 
     @property
     def items(self):
+        ''' items '''
         return self.inventory
 
     @items.setter
@@ -73,16 +78,20 @@ class Hero():
         self.inventory = self.inventory.append(item)
 
     def additem(self, item):
+        ''' additem '''
         return self.inventory.append(item)
 
-    def dropItem(self, item):
+    def drop_item(self, item):
+        ''' drop_item '''
         return self.inventory.remove(item)
 
-    def deleteItemN(self, n):
+    def del_item_n(self, n):
+        ''' del_item_n '''
         del self.inventory[n]
 
     @property
     def kill(self):
+        ''' kill '''
         return f"{self.name}: {self.kills} kills total"
 
     @kill.setter
@@ -91,23 +100,28 @@ class Hero():
 
     @kill.getter
     def kill(self):
+        ''' kill.getter '''
         return self.kill
 
-    def addKill(self, killno):
+    def add_kill(self, killno):
+        ''' add_kill '''
         self.kills += killno
 
     @property
     def healthstat(self):
+        ''' healthstat '''
         return self.health
 
-    def incHealth(self, h):
+    def inc_health(self, h):
+        ''' inc_health '''
         if self.health + h >= 100:
             print(f"{self.name} -> Healthy enough now!: 100")
             self.health = 100
         else:
             self.health += h
 
-    def decHealth(self, h):
+    def dec_health(self, h):
+        ''' dec_health '''
         if self.health - h <= 0:
             print(f"{self.name} -> Need health to be alive!: 0!")
             self.alive = 0
@@ -117,17 +131,21 @@ class Hero():
 
     @staticmethod
     def set_level(self, amount):
+        ''' set_level '''
         self.level = amount
 
-    def addWin(self, win):
+    def add_win(self, win):
+        ''' add_win '''
         self.wins += win
 
-    def addLoss(self, loss):
+    def add_loss(self, loss):
+        ''' add_loss '''
         self.losses += loss
 
 
 # read json file
-def ReadJSONData(filename, raw=False):
+def read_json_data(filename, raw=False):
+    ''' read_json_data '''
     try:
         data = json.load(open(filename))
     except FileNotFoundError:
@@ -139,6 +157,7 @@ def ReadJSONData(filename, raw=False):
 
 
 def main():
+    ''' main '''
     #  ## Hero class default
     #  hero0 = Hero()
     #
@@ -158,30 +177,30 @@ def main():
     #  print(f"Hero items: {hero.items}")
     #  print(f"Hero stat: {hero.healthstat}")
     #
-    #  hero.additem('Bifrost')
+    #  hero.add_item('Bifrost')
     #  Hero.set_level(hero, 5)
     #  print(f"Hero {hero.name} items: {hero.items}")
     #  print(f"Hero {hero.name} level: {hero.level}")
     #  print(f"Hero {hero.name} wins: {hero.wins}")
     #
-    #  hero.dropItem('Bifrost')
-    #  hero.addWin(4)
+    #  hero.drop_item('Bifrost')
+    #  hero.add_win(4)
     #  print(f"Hero {hero.name}, items: {hero.items}")
     #  print(f"Hero {hero.name} wins: {hero.wins}")
     #  print(f"Hero {hero.name}, kill #: {hero.kills}")
     #  print(f"Hero {hero.name}, kill total #: {hero.kills}")
     #  hero.kill = 12
     #  print(f"Hero {hero.name}, kill #: {hero.kills}")
-    #  hero.addKill(5)
+    #  hero.add_kill(5)
     #  print(f"Hero {hero.name}, kill #: {hero.kills}")
     #  print(f"Hero {hero.name}, health: {hero.health}")
-    #  hero.incHealth(10)
+    #  hero.inc_health(10)
     #  print(f"Hero {hero.name}, health: {hero.health}")
-    #  hero.incHealth(10)
+    #  hero.inc_health(10)
     #  print(f"Hero {hero.name}, health: {hero.health}")
     #  print(f"Hero {hero.name}, alive: {hero.alive}")
     #
-    #  hero.addLoss(2)
+    #  hero.add_loss(2)
     #  print(f"Hero {hero.name}, losses: {hero.losses}")
     #
     #  # full object
@@ -190,8 +209,8 @@ def main():
     #
     #  print(f"Number of heros {Hero.numHeros}")
 
-    #  HEROS = ReadJSONData("heros.json")
-    R_HEROS = ReadJSONData("heros.json", raw=True)
+    #  HEROS = read_json_data("heros.json")
+    R_HEROS = read_json_data("heros.json", raw=True)
 
     #  pprint(HEROS)
     #  pprint(R_HEROS)
@@ -202,14 +221,15 @@ def main():
     for i, h in enumerate(R_HEROS):
         eroe = Hero(**h)
         print(f"{eroe!s}")
-        print(f"\nHero ID: {eroe.ID}, name: {eroe.name}, kills: {eroe.kills}, health: {eroe.health},\
+        print(f"\nHero ID: {eroe.ID}, name: {eroe.name}, kills: {eroe.kills},\
+              health: {eroe.health},\
               inventory: {eroe.inventory}, enemy: {eroe.archenemy}")
-        eroe.addKill(8)
+        eroe.add_kill(-1)
         eroe.additem('Katana')
-        eroe.addEnemy("Galactus")
+        eroe.add_enemy("Galactus")
         print(f"\n{eroe.name}, kills: {eroe.kills}, health: {eroe.health},\
               inventory: {eroe.inventory}, enemy: {eroe.archenemy}")
-        eroe.deleteItemN(-1)
+        eroe.del_item_n(-1)
         print(f"\n{eroe.name}, kills: {eroe.kills}, health: {eroe.health},\
             inventory: {eroe.inventory}")
         print(f"\nTotal generated heros: {Hero.numHeros}")
