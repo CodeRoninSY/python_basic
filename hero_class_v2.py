@@ -175,7 +175,7 @@ print(f"Number of heros {Hero.numHeros}")
 
 
 # json data
-def getData(filename, raw=False):
+def ReadJSONData(filename, raw=False):
     try:
         data = json.load(open(filename))
     except FileNotFoundError:
@@ -185,8 +185,8 @@ def getData(filename, raw=False):
             return data["heros"]
         return [Hero(**hero) for hero in data["heros"]]
 
-#  HEROS = getData("heros.json")
-R_HEROS = getData("heros.json", raw=True)
+#  HEROS = ReadJSONData("heros.json")
+R_HEROS = ReadJSONData("heros.json", raw=True)
 
 #  pprint(HEROS)
 #  pprint(R_HEROS)
