@@ -10,6 +10,8 @@ Date: <2019-04-21>
 '''
 import json
 from pprint import pprint
+from functools import reduce
+from operator import attrgetter, itemgetter
 
 
 class Hero():
@@ -180,18 +182,21 @@ def getData(filename, raw=False):
             return data["heros"]
         return [Hero(**hero) for hero in data["heros"]]
 
-HEROS = getData("heros.json")
+#  HEROS = getData("heros.json")
 R_HEROS = getData("heros.json", raw=True)
 
-pprint(HEROS)
-pprint(R_HEROS)
+#  pprint(HEROS)
+#  pprint(R_HEROS)
 
+#  ids = sorted(R_HEROS, key=itemgetter('ID'))
+#  print(f"Sorted IDs[0]: {ids[0]['ID']}, {ids[0]['name']}, {ids[0]['archenemy']}")
 
-def get_entity(data, entity):
-    return data['entity']
-
-#  # printout data dictionary
-#  for data_id, data_info in data.items():
-#      print(f"\nPersonId: {data_id}")
-#      for key in data_info:
-#          print(f"\t\t{key}: {data_info[key]}")
+for i, h in enumerate(R_HEROS):
+    eroe = Hero(**h)
+    print(f"Hero name: {eroe.name}, kills: {eroe.kills}, health: {eroe.health},\
+          inventory: {eroe.inventory}")
+    eroe.addKill(8)
+    eroe.additem('Katana')
+    print(f"Hero name: {eroe.name}, kills: {eroe.kills}, health: {eroe.health},\
+          inventory: {eroe.inventory}")
+    print(f"Total heros: {Hero.numHeros}")
