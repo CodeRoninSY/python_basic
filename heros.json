@@ -1,0 +1,32 @@
+{
+    "heros": [ 
+    {
+            "ID": 2,
+            "name": "DareDevil",
+            "health": 100,
+            "alive": 1,
+            "level": 3,
+            "wins": 19,
+            "losses": 1,
+            "kills": 0,
+            "clan": "Defenders",
+            "country": "US",
+            "inventory": ["Armor", "Sticks", "Horned mask"],
+            "archenemy": ["Wilson Fisk"]
+    },
+    {
+            "ID": 3,
+            "name": "Superman",
+            "health": 100,
+            "alive": 1,
+            "level": 100,
+            "wins": 20,
+            "losses": 2,
+            "kills": 5,
+            "clan": "El family",
+            "country": "US",
+            "inventory": ["Body suit"],
+            "archenemy": ["General Zod", "Lex Luthor"]
+    }
+    ]
+}
