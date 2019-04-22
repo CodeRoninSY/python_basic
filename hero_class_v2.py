@@ -9,7 +9,7 @@ Date: <2019-04-21>
 
 '''
 import json
-#  from pprint import pprint
+from pprint import pprint
 #  from functools import reduce
 #  from operator import attrgetter, itemgetter
 
@@ -19,6 +19,7 @@ class Hero():
     # class properties
     ID = 0
     name = "Sunny"
+    alias = "Regent"
     health = 100
     alive = 1
     level = 1
@@ -30,30 +31,35 @@ class Hero():
     inventory = ['Sword']
     archenemy = ['Baron Quinn']
     superpower = ['Martial arts']
+    profession = ["Head of Clippers"]
     # total number of heros
     numHeros = 0
 
     def __init__(self, **kwargs):
-        for k, v in kwargs.items():
-            setattr(self, k, v)
+        for key, value in kwargs.items():
+            setattr(self, key, value)
         # add1 to total number of heros
         Hero.numHeros += 1
 
     def __str__(self):
-        return f"--> ID: {self.ID}, name: {self.name}, alive: {self.alive},\
+        return f"--> ID: {self.ID}, name: {self.name}, alias: {self.alias},\
+            alive: {self.alive},\
             health: {self.health}, level: {self.level}, wins: {self.wins},\
             losses: {self.losses}, kills: {self.kills}, clan: {self.clan},\
-            country: {self.country}, inventory: {self.inventory}, \
-            archenemy: {self.archenemy}, superpower: {self.superpower}"
+            country: {self.country}, inventory: {self.inventory},\
+            archenemy: {self.archenemy}, superpower: {self.superpower},\
+            profession: {self.profession}"
 
     def __repr__(self):
-        return str({'ID': self.ID, 'name': self.name, 'health': self.health,
+        return str({'ID': self.ID, 'name': self.name, 'alias': self.alias,
+                    'health': self.health,
                     'alive': self.alive, 'level': self.level,
                     'wins': self.wins, 'losses': self.losses,
                     'kills': self.kills, 'clan': self.clan,
                     'country': self.country, 'inventory': self.inventory,
                     'archenemy': self.archenemy,
-                    'superpower': self.superpower})
+                    'superpower': self.superpower,
+                    'profession': self.profession})
 
     @property
     def enemy(self):
@@ -85,9 +91,9 @@ class Hero():
         ''' drop_item '''
         return self.inventory.remove(item)
 
-    def del_item_n(self, n):
+    def del_item_n(self, quantita):
         ''' del_item_n '''
-        del self.inventory[n]
+        del self.inventory[quantita]
 
     @property
     def kill(self):
@@ -112,22 +118,22 @@ class Hero():
         ''' healthstat '''
         return self.health
 
-    def inc_health(self, h):
+    def inc_health(self, salute):
         ''' inc_health '''
-        if self.health + h >= 100:
+        if self.health + salute >= 100:
             print(f"{self.name} -> Healthy enough now!: 100")
             self.health = 100
         else:
-            self.health += h
+            self.health += salute
 
-    def dec_health(self, h):
+    def dec_health(self, salute):
         ''' dec_health '''
-        if self.health - h <= 0:
+        if self.health - salute <= 0:
             print(f"{self.name} -> Need health to be alive!: 0!")
             self.alive = 0
             self.health = 0
         else:
-            self.health -= h
+            self.health -= salute
 
     @staticmethod
     def set_level(self, amount):
@@ -210,29 +216,33 @@ def main():
     #  print(f"Number of heros {Hero.numHeros}")
 
     #  HEROS = read_json_data("heros.json")
-    R_HEROS = read_json_data("heros.json", raw=True)
+    raw_heros = read_json_data("heros.json", raw=True)
 
     #  pprint(HEROS)
-    #  pprint(R_HEROS)
+    #  pprint(raw_heros)
 
-    #  ids = sorted(R_HEROS, key=itemgetter('ID'))
+    #  ids = sorted(raw_heros, key=itemgetter('ID'))
     #  print(f"Sorted IDs[0]: {ids[0]['ID']}, {ids[0]['name']}, {ids[0]['archenemy']}")
 
-    for i, h in enumerate(R_HEROS):
+    for i, h in enumerate(raw_heros):
         eroe = Hero(**h)
-        print(f"{eroe!s}")
-        print(f"\nHero ID: {eroe.ID}, name: {eroe.name}, kills: {eroe.kills},\
-              health: {eroe.health},\
-              inventory: {eroe.inventory}, enemy: {eroe.archenemy}")
-        eroe.add_kill(-1)
-        eroe.additem('Katana')
-        eroe.add_enemy("Galactus")
-        print(f"\n{eroe.name}, kills: {eroe.kills}, health: {eroe.health},\
-              inventory: {eroe.inventory}, enemy: {eroe.archenemy}")
-        eroe.del_item_n(-1)
-        print(f"\n{eroe.name}, kills: {eroe.kills}, health: {eroe.health},\
-            inventory: {eroe.inventory}")
+        #  print(f"{eroe!s}")
+        #  print(f"\nHero ID: {eroe.ID}, name: {eroe.name}, kills: {eroe.kills},\
+        #        health: {eroe.health},\
+        #        inventory: {eroe.inventory}, enemy: {eroe.archenemy}")
+        #  eroe.add_kill(-1)
+        #  eroe.additem('Katana')
+        #  eroe.add_enemy("Galactus")
+        #  print(f"\n{eroe.name}, kills: {eroe.kills}, health: {eroe.health},\
+        #        inventory: {eroe.inventory}, enemy: {eroe.archenemy}")
+        #  eroe.del_item_n(-1)
+        #  eroe.add_kill(1)
+        #  eroe.del_enemy('Galactus')
+        #  print(f"\n{eroe.name}, kills: {eroe.kills}, health: {eroe.health},\
+        #        inventory: {eroe.inventory}, enemy: {eroe.archenemy}")
+        #  print(f"\n Enemy total: {len(eroe.archenemy)}")
         print(f"\nTotal generated heros: {Hero.numHeros}")
+        pprint(eroe)
 
 
 # MAIN

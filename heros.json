@@ -1,8 +1,9 @@
 {
-    "heros": [ 
+    "heros": [
     {
             "ID": 2,
-            "name": "DareDevil",
+            "name": "Matthew Murdock",
+            "alias": "DareDevil",
             "health": 100,
             "alive": 1,
             "level": 3,
@@ -13,11 +14,13 @@
             "country": "US",
             "inventory": ["Armor", "Sticks", "Horned mask"],
             "archenemy": ["Wilson Fisk"],
-            "superpower": ["Martial arts", "Hightened sense", "Resilience"]
+            "superpower": ["Martial arts", "Hightened sense", "Resilience"],
+            "profession": ["Lawyer", "Vigilante"]
     },
     {
             "ID": 3,
-            "name": "Superman",
+            "name": "Kal El",
+            "alias": "Superman",
             "health": 100,
             "alive": 1,
             "level": 100,
@@ -28,11 +31,13 @@
             "country": "US",
             "inventory": ["Body suit"],
             "archenemy": ["General Zod", "Lex Luthor"],
-            "superpower": ["Invincible", "Ultra sight", "Fly", "Super strength"]
+            "superpower": ["Invincible", "Ultra sight", "Fly", "Super strength"],
+            "profession": ["Farmer", "Journalist"]
     },
     {
             "ID": 4,
-            "name": "Dr. Strange",
+            "name": "Stephen Strange",
+            "alias": "Dr. Strange",
             "health": 100,
             "alive": 1,
             "level": 80,
@@ -43,26 +48,30 @@
             "country": "US",
             "inventory": ["Time Stone"],
             "archenemy": ["Thanos"],
-            "superpower": ["Sorcery", "Magic", "Time manipulation"]
+            "superpower": ["Sorcery", "Magic", "Time manipulation"],
+            "profession": ["Neurosurgeon", "Sorcerer"]
     },
     {
             "ID": 5,
-            "name": "Iron Man",
+            "name": "Tony Stark",
+            "alias": "Iron Man",
             "health": 100,
             "alive": 1,
             "level": 100,
             "wins": 20,
             "losses": 2,
             "kills": 200,
-            "clan": "Stark",
+            "clan": "Avengers",
             "country": "US",
             "inventory": ["IronMan suit Mk14", "Arc generator", "Pepper Pots"],
             "archenemy": ["Thanos", "Red Skull", "Ebony Maw"],
-            "superpower": ["Genius", "Engineer", "Rich"]
+            "superpower": ["Genius", "Engineer", "Rich"],
+            "profession": ["Engineer", "Tech nerd"]
     },
     {
             "ID": 6,
-            "name": "Spider Man",
+            "name": "Peter Parker",
+            "alias": "Spiderman",
             "health": 100,
             "alive": 1,
             "level": 40,
@@ -73,11 +82,13 @@
             "country": "US",
             "inventory": ["Spider Man suit", "Camera"],
             "archenemy": ["Thanos", "Ebony Maw", "Green Goblin", "Dr Octopus"],
-            "superpower": ["Ultra strength", "Hightened senses", "Modified genetics"]
+            "superpower": ["Ultra strength", "Hightened senses", "Modified genetics"],
+            "profession": ["Photographer"]
     },
     {
             "ID": 7,
-            "name": "Black Widow",
+            "name": "Natasha Romanoff",
+            "alias": "Black Widow",
             "health": 100,
             "alive": 1,
             "level": 30,
@@ -88,11 +99,13 @@
             "country": "USSR",
             "inventory": ["Black suit", "HK VP9", "Tranquilizer stick"],
             "archenemy": ["Thanos", "Red Skull", "Ebony Maw"],
-            "superpower": ["Martial arts", "Cunning", "Special forces", "Intelligence"]
+            "superpower": ["Martial arts", "Cunning", "Special forces", "Intelligence"],
+            "profession": ["Assassin", "Intelligence officer"]
     },
     {
             "ID": 8,
-            "name": "Hulk",
+            "name": "Bruce Banner",
+            "alias": "Hulk",
             "health": 100,
             "alive": 1,
             "level": 100,
@@ -103,11 +116,13 @@
             "country": "US",
             "inventory": ["Invincible power", "Gamma radiation", "Anything smash"],
             "archenemy": ["Thanos", "Red Skull", "Ebony Maw"],
-            "superpower": ["Ultra-extreme strength", "Indestructible"]
+            "superpower": ["Ultra-extreme strength", "Indestructible"],
+            "profession": ["Scientist"]
     },
     {
             "ID": 9,
-            "name": "Batman",
+            "name": "Bruce Wayne",
+            "alias": "Batman",
             "health": 100,
             "alive": 1,
             "level": 60,
@@ -118,7 +133,26 @@
             "country": "US",
             "inventory": ["Batman suit", "Batmobil", "Batwing", "Hitech weapons"],
             "archenemy": ["Penguin", "Dr Pig", "Thanos", "Joker", "Superman", "General Zod", "Fish Mooney", "Ras Al-Ghul"],
-            "superpower": ["Martial arts", "Assassin", "Genius", "Extremely rich"]
+            "superpower": ["Martial arts", "Assassin", "Genius", "Extremely rich"],
+            "profession": ["Businessman", "Technologist"]
+    },
+    {
+            "ID": 10,
+            "name": "Steve Rogers",
+            "alias": "Captain America",
+            "health": 100,
+            "alive": 1,
+            "level": 70,
+            "wins": 30,
+            "losses": 1,
+            "kills": 10,
+            "clan": "Avengers",
+            "country": "US",
+            "inventory": ["Vibranium shield", "Suit"],
+            "archenemy": ["Thanos", "Red Skull", "Ultron"],
+            "superpower": ["Advanced genetics", "Military training"],
+            "profession": ["Soldier"]
     }
+
     ]
 }
