@@ -114,6 +114,28 @@ class Journey(object):
         return f"Cost of {self.JID} is {self.cost}"
 
 
+def serialize_json(instance=None, path=None):
+    dt = {}
+    dt.update(vars(instance))
+
+    with open(path, "w") as file:
+        json.dump(dt, file)
+
+def deserialize_json(cls=None, path=None):
+    def read_json(_path):
+        with open(_path, "r") as file:
+            return json.load(file)
+
+    data = read_json(path)
+
+    instance = object.__new__(cls)
+
+    for key, value in data.items():
+        setattr(instance, key, value)
+
+    return instance
+
+
 def main():
     ''' Main '''
     vacation = Journey()
@@ -145,6 +167,23 @@ def main():
     print(f"Vacation: {vacation!s}")
 
     pprint(vacation)
+
+    data = {}
+    data['journey'] = []
+    data['journey'].append(vacation)
+    data['journey'].append(vacation)
+    data['journey'].append(vacation)
+    data['journey'].append(vacation)
+    print(f"\n\nData: {data}")
+
+
+    ws = Journey()
+    serialize_json(ws, "test.json")
+
+    rs = deserialize_json(Journey, "test.json")
+
+    print(f"vars(ws): {vars(ws)}\n\n")
+    print(f"vars(rs): {vars(rs)}\n\n")
 
 
 if __name__ == "__main__":
