@@ -2,7 +2,7 @@
 """
 Created on Sun Oct 15 15:22:54 2017
 
-@author: Sener
+@author: CodeRoninSY
 """
 
 # OOP in python
