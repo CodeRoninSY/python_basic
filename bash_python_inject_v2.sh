@@ -27,7 +27,7 @@ echo "Handy"
 
 echo $(line 80)
 
-sleep 3
+sleep 1
 end=$(date +%s.%N)
 ds=$(echo "$end - $st" | bc -l)
 
