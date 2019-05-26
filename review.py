@@ -28,8 +28,6 @@ add2 = lambda x, y: x + y
 
 print(f'add1: {add1(1, 2)}')
 print(f'add2: {add2(1, 2)}')
-#  help(add1)
-#  help(add2)
 
 class Adder():
     def __init__(self, z=0):

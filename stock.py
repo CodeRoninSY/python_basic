@@ -1,7 +1,17 @@
+#!/usr/bin/env python
+# -*- coding: windows-1252 -*-
+'''
+=*= stock.py =*=
+
+Synopsis: Read dictionary from JSON file and tinker data using functional programming paradigms
+
+CodeRoninSY @2019
+'''
 from copy import copy
 from functools import reduce
 import json
 from operator import attrgetter, itemgetter
+from pprint import pprint
 
 class Book:
     def __init__(self, **kwargs):
@@ -10,11 +20,11 @@ class Book:
 
     def __str__(self):
         return self.title
-    
+
     def __repr__(self):
         return str(self)
-    
-    
+
+
 def get_books(filename, raw=False):
     try:
         data = json.load(open(filename))
@@ -24,29 +34,32 @@ def get_books(filename, raw=False):
         if raw:
             return data['books']
         return [Book(**book) for book in data['books']]
-    
+
 BOOKS = get_books('books.json')
 RAW_BOOKS = get_books('books.json', raw=True)
 
-### SORTED ###
-# pub_sort = sorted(RAW_BOOKS, key=itemgetter('publish_date'))
-# print(pub_sort[0]['publish_date'], pub_sort[-1]['publish_date'])
-# pages_sort = sorted(BOOKS, key=attrgetter('number_of_pages'))
-# print(pages_sort[0].number_of_pages, pages_sort[-1].number_of_pages)
+pprint(BOOKS, indent=4)
+pprint(RAW_BOOKS, indent=4)
 
-#important_list = [5, 3, 1, 2, 4]
-#important_list.sort()  # Bad idea, sorts list in place
+### SORTED ###
+pub_sort = sorted(RAW_BOOKS, key=itemgetter('publish_date'))
+print("pub_sort: ", pub_sort[0]['publish_date'], pub_sort[-1]['publish_date'])
+pages_sort = sorted(BOOKS, key=attrgetter('number_of_pages'))
+print("pages_sort: ", pages_sort[0].number_of_pages, pages_sort[-1].number_of_pages)
+
+# important_list = [5, 3, 1, 2, 4]
+# important_list.sort()  # Bad idea, sorts list in place
 # sorted(important_list)  # Sorts a copy of the list
 
 ### MAP ###
 def sales_price(book):
     """Apply a 20% discount to the book's price"""
     book = copy(book)
-    book.price = round(book.price-book.price*.2, 2)
+    book.price = round(book.price - book.price * .2, 2)
     return book
 
-# sales_books = list(map(sales_price, BOOKS))
-# sales_books2 = [sales_price(book) for book in BOOKS]
+sales_books = list(map(sales_price, BOOKS))
+sales_books2 = [sales_price(book) for book in BOOKS]
 
 ### FILTER ###
 def is_long_book(book):
@@ -65,16 +78,16 @@ def titlecase(book):
     book.title = book.title.title()
     return book
 
-#print(list(map(titlecase, filter(has_roland, BOOKS))))
+print(list(map(titlecase, filter(has_roland, BOOKS))))
 
 def is_good_deal(book):
     return book.price <= 5
 
-# cheap_books = sorted(
-#     filter(is_good_deal, map(sales_price, BOOKS)),
-#     key=attrgetter('price')
-# )
-# print(cheap_books[0].price)
+cheap_books = sorted(
+    filter(is_good_deal, map(sales_price, BOOKS)),
+    key=attrgetter('price')
+)
+print(cheap_books[0].price)
 
 ### REDUCE ###
 def product(x, y):
@@ -105,10 +118,10 @@ def long_total(a=None, b=None, books=None):
         return a
 #print(long_total(None, None, [b.price for b in BOOKS]))
 
-def factorial(n):
-    if n == 1:
-        return 1
-    else:
-        return n * factorial(n-1)
-    
-print(factorial(5))
+# def factorial(n):
+#     if n == 1:
+#         return 1
+#     else:
+#         return n * factorial(n-1)
+
+# print(factorial(5))

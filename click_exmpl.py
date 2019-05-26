@@ -8,6 +8,9 @@ click_exmpl.py
 import click
 
 
+CONTEXT_SETTINGS = dict(help_option_names=['-h', '--help'])
+
+
 def greeter(**kwargs):
     ''' greeter '''
     output = '{0}, {1}!'.format(kwargs['greeting'], kwargs['name'])
@@ -17,6 +20,20 @@ def greeter(**kwargs):
 
 
 @click.group()
+def cli():
+    """ cli group """
+    pass
+
+
+@cli.command()
+def colordemo():
+    """ Demonstrates ANSI color support. """
+    for color in 'red', 'green', 'blue':
+        click.echo(click.style('colored %s' % color, fg=color))
+        click.echo(click.style('background color %s' % color, bg=color))
+
+
+@click.group(context_settings=CONTEXT_SETTINGS)
 @click.version_option(version='1.0.0')
 def greet():
     ''' Greet '''

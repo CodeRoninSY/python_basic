@@ -5,7 +5,7 @@ hero_class.py
 Synopsis: Hero class definition
 To learn & understand the "class" feature and methods
 Author: CodeRoninSY @2019
-Date: <2019-04-21>
+Date: <2019-05-04>
 
 Some info on class methods:
     static methods (@staticmethod):
@@ -28,27 +28,11 @@ Some info on class methods:
 import json
 from pprint import pprint
 #  from functools import reduce
-#  from operator import attrgetter, itemgetter
+from operator import attrgetter, itemgetter
 
 
 class Hero(object):
     ''' Hero Class '''
-    # class properties
-    ID = 0
-    name = "Sunny"
-    alias = "Regent"
-    health = 100
-    alive = 1
-    level = 1
-    wins = 0
-    losses = 0
-    kills = 0
-    clan = "Clippers"
-    country = "Badlands"
-    inventory = ['Sword']
-    archenemy = ['Baron Quinn']
-    superpower = ['Martial arts']
-    profession = ["Head of Clippers"]
     # total number of heros
     numHeros = 0
 
@@ -77,6 +61,21 @@ class Hero(object):
                     'archenemy': self.archenemy,
                     'superpower': self.superpower,
                     'profession': self.profession})
+
+    @property
+    def _ID(self):
+        """_ID"""
+        return self.ID
+
+    @_ID.setter
+    def _ID(self, id):
+        '''_ID setter'''
+        self.ID = id
+
+    @_ID.getter
+    def _ID(self):
+        '''_ID.getter'''
+        return f"{self.name}.ID= {self.ID}"
 
     @property
     def enemy(self):
@@ -199,83 +198,85 @@ def read_json_data(filename, raw=False):
 
 def main():
     ''' main '''
-    #  ## Hero class default
-    #  hero0 = Hero()
-    #
-    #  print(f"Hero : {hero0!s}")
-    #  print(f"Hero name: {hero0.name}")
-    #  print(f"Hero items: {hero0.items}")
-    #  print(f"Hero stat: {hero0.healthstat}")
-    #  print(f"Hero wins: {hero0.wins}")
-    #
-    #  # generate a Hero object
-    #  hero = Hero(name='Thor', ID=1, health=85, level=2,
-    #              inventory=['Mjolnir', 'Chariot', 'Bilskirnir'], wins=2, kills=10,
-    #              clan="Asgardian", country='Asgard',
-    #              archenemy=['Thanos', 'Hella', 'Malekith'])
-    #
-    #  print(f"Hero name: {hero.name}")
-    #  print(f"Hero items: {hero.items}")
-    #  print(f"Hero stat: {hero.healthstat}")
-    #
-    #  hero.add_item('Bifrost')
-    #  Hero.set_level(hero, 5)
-    #  print(f"Hero {hero.name} items: {hero.items}")
-    #  print(f"Hero {hero.name} level: {hero.level}")
-    #  print(f"Hero {hero.name} wins: {hero.wins}")
-    #
-    #  hero.drop_item('Bifrost')
-    #  hero.add_win(4)
-    #  print(f"Hero {hero.name}, items: {hero.items}")
-    #  print(f"Hero {hero.name} wins: {hero.wins}")
-    #  print(f"Hero {hero.name}, kill #: {hero.kills}")
-    #  print(f"Hero {hero.name}, kill total #: {hero.kills}")
-    #  hero.kill = 12
-    #  print(f"Hero {hero.name}, kill #: {hero.kills}")
-    #  hero.add_kill(5)
-    #  print(f"Hero {hero.name}, kill #: {hero.kills}")
-    #  print(f"Hero {hero.name}, health: {hero.health}")
-    #  hero.inc_health(10)
-    #  print(f"Hero {hero.name}, health: {hero.health}")
-    #  hero.inc_health(10)
-    #  print(f"Hero {hero.name}, health: {hero.health}")
-    #  print(f"Hero {hero.name}, alive: {hero.alive}")
-    #
-    #  hero.add_loss(2)
-    #  print(f"Hero {hero.name}, losses: {hero.losses}")
-    #
-    #  # full object
-    #  print(f"Hero {hero!s}")
-    #  print(f"Hero {hero!r}")
-    #
-    #  print(f"Number of heros {Hero.numHeros}")
+    ## Hero class default
+    hero0 = Hero()
 
-    #  HEROS = read_json_data("heros.json")
+    print(f"Hero : {hero0!s}")
+    print(f"Hero name: {hero0.name}")
+    print(f"Hero items: {hero0.items}")
+    print(f"Hero stat: {hero0.healthstat}")
+    print(f"Hero wins: {hero0.wins}")
+
+    # generate a Hero object
+    hero = Hero(name='Thor', ID=1, health=85, level=2,
+                inventory=['Mjolnir', 'Chariot', 'Bilskirnir'], wins=2, kills=10,
+                clan="Asgardian", country='Asgard',
+                archenemy=['Thanos', 'Hella', 'Malekith'])
+
+    print(f"Hero name: {hero.name}")
+    print(f"Hero items: {hero.items}")
+    print(f"Hero stat: {hero.healthstat}")
+
+    hero.add_item('Bifrost')
+    Hero.set_level(hero, 5)
+    print(f"Hero {hero.name} items: {hero.items}")
+    print(f"Hero {hero.name} level: {hero.level}")
+    print(f"Hero {hero.name} wins: {hero.wins}")
+
+    hero.drop_item('Bifrost')
+    hero.add_win(4)
+    print(f"Hero {hero.name}, items: {hero.items}")
+    print(f"Hero {hero.name} wins: {hero.wins}")
+    print(f"Hero {hero.name}, kill #: {hero.kills}")
+    print(f"Hero {hero.name}, kill total #: {hero.kills}")
+    hero.kill = 12
+    print(f"Hero {hero.name}, kill #: {hero.kills}")
+    hero.add_kill(5)
+    print(f"Hero {hero.name}, kill #: {hero.kills}")
+    print(f"Hero {hero.name}, health: {hero.health}")
+    hero.inc_health(10)
+    print(f"Hero {hero.name}, health: {hero.health}")
+    hero.inc_health(10)
+    print(f"Hero {hero.name}, health: {hero.health}")
+    print(f"Hero {hero.name}, alive: {hero.alive}")
+
+    hero.add_loss(2)
+    print(f"Hero {hero.name}, losses: {hero.losses}")
+
+    # full object
+    print(f"Hero {hero!s}")
+    print(f"Hero {hero!r}")
+
+    print(f"Number of heros {Hero.numHeros}")
+
+    HEROS = read_json_data("heros.json")
     raw_heros = read_json_data("heros.json", raw=True)
 
-    #  pprint(HEROS)
-    #  pprint(raw_heros)
+    pprint(HEROS)
+    pprint(raw_heros)
 
-    #  ids = sorted(raw_heros, key=itemgetter('ID'))
-    #  print(f"Sorted IDs[0]: {ids[0]['ID']}, {ids[0]['name']}, {ids[0]['archenemy']}")
+    ids = sorted(raw_heros, key=itemgetter('ID'))
+    print(f"Sorted IDs[0]: {ids[0]['ID']}, {ids[0]['name']}, {ids[0]['archenemy']}")
 
     for i, h in enumerate(raw_heros):
         eroe = Hero(**h)
-        #  print(f"{eroe!s}")
-        #  print(f"\nHero ID: {eroe.ID}, name: {eroe.name}, kills: {eroe.kills},\
-        #        health: {eroe.health},\
-        #        inventory: {eroe.inventory}, enemy: {eroe.archenemy}")
-        #  eroe.add_kill(-1)
-        #  eroe.additem('Katana')
-        #  eroe.add_enemy("Galactus")
-        #  print(f"\n{eroe.name}, kills: {eroe.kills}, health: {eroe.health},\
-        #        inventory: {eroe.inventory}, enemy: {eroe.archenemy}")
-        #  eroe.del_item_n(-1)
-        #  eroe.add_kill(1)
-        #  eroe.del_enemy('Galactus')
-        #  print(f"\n{eroe.name}, kills: {eroe.kills}, health: {eroe.health},\
-        #        inventory: {eroe.inventory}, enemy: {eroe.archenemy}")
-        #  print(f"\n Enemy total: {len(eroe.archenemy)}")
+
+        print(f"{eroe!s}")
+        print(f"\nHero ID: {eroe.ID}, name: {eroe.name}, kills: {eroe.kills},\
+              health: {eroe.health},\
+              inventory: {eroe.inventory}, enemy: {eroe.archenemy}")
+        eroe.add_kill(-1)
+        eroe.additem('Katana')
+        eroe.add_enemy("Galactus")
+        print(f"\n{eroe.name}, kills: {eroe.kills}, health: {eroe.health},\
+              inventory: {eroe.inventory}, enemy: {eroe.archenemy}")
+        eroe.del_item_n(-1)
+        eroe.add_kill(1)
+        eroe.del_enemy('Galactus')
+        print(f"\n{eroe.name}, kills: {eroe.kills}, health: {eroe.health},\
+              inventory: {eroe.inventory}, enemy: {eroe.archenemy}")
+        print(f"\n Enemy total: {len(eroe.archenemy)}")
+
         print(f"\nTotal generated heros: {Hero.numHeros}")
         pprint(eroe)
 

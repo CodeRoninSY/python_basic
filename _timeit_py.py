@@ -16,7 +16,7 @@ def example():
 '''
 
 # timeit statement
-print(timeit.timeit(setup=MYSETUP, stmt=MYCODE, number=1))
+print(f"mycode time= {timeit.timeit(setup=MYSETUP, stmt=MYCODE, number=1)}")
 
 MYCODE2 = '''
 MILLION_NUMS = list(range(1000000))
@@ -32,9 +32,9 @@ MIL_SET = set(arr)
 999999 in MIL_SET
 '''
 
-print(timeit.timeit(stmt=MYCODE2, number=1))
+print(f"mycode2 time= {timeit.timeit(stmt=MYCODE2, number=1)}")
 
-print(timeit.timeit(setup=MYSETUP2, stmt=MYCOD3, number=1))
+print(f"mycode3 time= {timeit.timeit(setup=MYSETUP2, stmt=MYCOD3, number=1)}")
 
 
 MYSETUP3 = '''
@@ -63,5 +63,5 @@ MILLION_RANDOM_NUMBERS = MilRandNums(MILLION_RANDOM_NUMBERS)
 MILLION_RANDOM_NUMBERS.sort()
 '''
 
-print(timeit.timeit(setup=MYSETUP3, stmt=MYCOD4, number=1))
-print(timeit.timeit(setup=MYSETUP3, stmt=MYCOD5, number=1))
+print(f"mycode4 time= {timeit.timeit(setup=MYSETUP3, stmt=MYCOD4, number=1)}")
+print(f"mycode5 time= {timeit.timeit(setup=MYSETUP3, stmt=MYCOD5, number=1)}")

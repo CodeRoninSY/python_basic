@@ -9,7 +9,7 @@ Excerpts from Sebastian Witowski - Europython 2016 conference
 
 import functools
 import time
-import numpy as np
+#  import numpy as np
 import timeit
 import random
 

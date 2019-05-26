@@ -115,6 +115,7 @@ def menu():
                 click.echo('Invalid input')
         elif menu == 'debug':
             click.echo('Debug menu')
+            click.echo('*****Do something here*****')
             click.echo('    b: back')
             char = click.getchar()
             if char == 'b':
