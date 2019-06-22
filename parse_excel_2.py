@@ -37,6 +37,7 @@ data = {}
 
 # hardcoded sheetname from Excel file
 OPTIONS = [
+    "Data Notes",
     "Table 9 ",
 ]
 
@@ -61,7 +62,7 @@ def excelRead():
     book = xlrd.open_workbook(import_path,
                               logfile=logf, verbosity=args.verbose)
 
-    sheet = book.sheet_by_name(OPTIONS[0])
+    sheet = book.sheet_by_name(OPTIONS[1])
 
     for i in range(14, sheet.nrows):
 
@@ -125,13 +126,13 @@ if __name__ == '__main__':
                                 bg='green', fg='white', font=('helvetica', 12, 'bold'))
     browseButton_Excel.pack(side=tk.LEFT, padx=5, pady=5)
 
-    sh = tk.OptionMenu(root, sheetname, OPTIONS[0])
+    sh = tk.OptionMenu(root, sheetname, *OPTIONS)
     sh.pack(side=tk.LEFT, padx=2, pady=2)
 
-    lbCountry = tk.Label(root, text='Country')
-    lbCountry.pack(side=tk.LEFT, padx=5, pady=5)
+    lbCountry = tk.Label(root, text='Country:')
+    lbCountry.pack(side=tk.LEFT, padx=2, pady=2)
     eCountry = tk.Entry(root, textvariable=cntry)
-    eCountry.pack(side=tk.LEFT, padx=5, pady=5)
+    eCountry.pack(side=tk.LEFT, padx=2, pady=2)
     # get data
     getData = tk.Button(root, text='GetData', command=getData,
                         bg='teal', fg='white', font=('helvetica', 12, 'bold'))
