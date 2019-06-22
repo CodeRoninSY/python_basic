@@ -1,6 +1,10 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 """
+    parse_excel_2.py
+
+    Synopsis: Tkinter GUI app for parse excel file
+
     This is a script to parse child labor and child marriage data.
     The excel file used in this script can be found here:
         http://www.unicef.org/sowc2014/numbers/
@@ -14,7 +18,6 @@ import xlrd
 import pprint
 import tkinter as tk
 from tkinter import filedialog
-from tkinter import StringVar
 
 
 # logfile for excel read log
@@ -32,16 +35,21 @@ args = parser.parse_args()
 # Data to be read from Excel
 data = {}
 
+# hardcoded sheetname from Excel file
+OPTIONS = [
+    "Table 9 ",
+]
+
 
 def getData():
     ''' getData (Country) '''
-    pprint.pprint(data[getCountry()])
+    pprint.pprint(data[getCountry()], indent=4)
 
 
 def getCountry():
     ''' get Country '''
     countryStr = str(cntry.get())
-    print(countryStr)
+    pprint.pprint(countryStr)
     return countryStr
 
 
@@ -53,7 +61,7 @@ def excelRead():
     book = xlrd.open_workbook(import_path,
                               logfile=logf, verbosity=args.verbose)
 
-    sheet = book.sheet_by_name("Table 9 ")
+    sheet = book.sheet_by_name(OPTIONS[0])
 
     for i in range(14, sheet.nrows):
 
@@ -79,6 +87,15 @@ def excelRead():
                 'prevalence_women': [row[16], row[17]],
                 'prevalence_girls': [row[18], row[19]],
                 'attitudes': [row[20], row[21]],
+            },
+            'justification_wife_beating': {
+                'male': [row[22], row[23]],
+                'female': [row[24], row[25]],
+            },
+            'violent_discipline': {
+                'total': [row[26], row[27]],
+                'male': [row[28], row[29]],
+                'female': [row[30], row[31]],
             }
         }
 
@@ -87,24 +104,37 @@ def excelRead():
 
 
 if __name__ == '__main__':
-
+    ''' main driver '''
+    # country name global
     global cntry
+    global sheetname
 
+    # root window
     root = tk.Tk()
     root.title("Parse Excel")
 
+    # text entry
     cntry = tk.StringVar()
 
+    # sheet name set from OPTIONS
+    sheetname = tk.StringVar(root)
+    sheetname.set(OPTIONS[0])
+
+    # browse excel file
     browseButton_Excel = tk.Button(text='Import Excel File', command=excelRead,
-                                bg='green', fg='white', font=('Menlo', 12, 'bold'))
+                                bg='green', fg='white', font=('helvetica', 12, 'bold'))
     browseButton_Excel.pack(side=tk.LEFT, padx=5, pady=5)
+
+    sh = tk.OptionMenu(root, sheetname, OPTIONS[0])
+    sh.pack(side=tk.LEFT, padx=2, pady=2)
 
     lbCountry = tk.Label(root, text='Country')
     lbCountry.pack(side=tk.LEFT, padx=5, pady=5)
     eCountry = tk.Entry(root, textvariable=cntry)
     eCountry.pack(side=tk.LEFT, padx=5, pady=5)
-
-    getData = tk.Button(root, text='GetData', command=getData)
+    # get data
+    getData = tk.Button(root, text='GetData', command=getData,
+                        bg='teal', fg='white', font=('helvetica', 12, 'bold'))
     getData.pack(side=tk.LEFT, padx=5, pady=5)
 
     b2 = tk.Button(root, text='Quit', command=root.quit)
