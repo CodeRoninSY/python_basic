@@ -28,6 +28,6 @@ reader = csv.reader(csvfile)
 print("List of items: {}".format(args.list))
 
 for i, row in enumerate(reader):
-    for j, value in enumerate(args.list):
-        if row[5] == value and row[2] == args.year:
+    for cntry in args.list:
+        if row[5] == cntry and row[2] == args.year:
             print(i, ' >> ', row[0], ':: ', row[5], row[6], row[7], row[8])
