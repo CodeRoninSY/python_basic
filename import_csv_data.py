@@ -30,4 +30,4 @@ print("List of items: {}".format(args.list))
 for i, row in enumerate(reader):
     for cntry in args.list:
         if row[5] == cntry and row[2] == args.year:
-            print(i, ' >> ', row[0], ':: ', row[5], row[6], row[7], row[8])
+            print(f"{i} >> {row[0]}| {row[2]} --> {row[5]}, {row[6]}, {row[7]}")
