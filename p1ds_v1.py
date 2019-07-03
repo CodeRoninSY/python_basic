@@ -1,22 +1,22 @@
 #!/usr/bin/python3
 # -*- coding: utf-8 -*-
 """
-p1ds.py
+p1dus_v1.py
 
-Synopsis: 1D convection-diffusion equation with Dirichlet boundary conditions ..
-.. on both ends. The exact solution is compared with solutions obtained using ..
-.. FD method and either UDS or CDS for convection term, CDS for diffusion term.
+Synopsis: Unsteady 1D convection-diffusion equation with Dirichlet boundary conditions ..
+.. on both ends.
+Initial solution is zero field, boundary conditions are time-independent; the transition from initial to steady solution is simulated using different time integration schemes.
 
 Author: CodeRoninSY
-Date: <2019-05-27>
+Date: <2019-07-01>
 Version: 0.1
 
 References:
 [1] Computational Fluid Dynamics, Ferziger & Peric
 
 Usage::
-$> python p1ds.py -h --> for help on arguments
-$> python p1ds.py -i parameter.json -o fileout -p 51
+$> python p1dus_v1.py -h --> for help on arguments
+$> python p1dus_v1.py -i parameter.json -o fileout -p 51
 
 IO::
 Input Data/File:
@@ -34,11 +34,8 @@ import numpy as np
 import argparse
 import json
 from pprint import pprint
-from pyfiglet import Figlet
-from clint.textui import colored, progress, prompt, puts, validators
 import subprocess
 import platform
-import click
 
 __author__ = "CodeRoninSY"
 __version__ = "0.1"
@@ -180,52 +177,47 @@ def GSOR():
 
 @timeit
 def TDMA():
-    """ TriDiagonal Matrix Algorithm Subroutine
-    Initial values of variables BPR(I) and V(I) assumed zero
-    """
+    """ TriDiagonal Matrix Algorithm Subroutine """
     bpr: float = np.zeros(NX)
     v: float = np.zeros(NX)
 
-    # calculate 1./U_p (bpr) and modified source term (v)
     for i in range(1, NM):
         bpr[i] = 1.0 / (AP[i] - AW[i] * AE[i - 1] * bpr[i - 1])
         v[i] = Q[i] - AW[i] * v[i - 1] * bpr[i - 1]
-    # calculate variable values - backward substitution
+
     for i in range(NM-1, 1, -1):
         FI[i] = (v[i] - AE[i] * FI[i+1]) * bpr[i]
+
+
+# CLI argument parser for P1DS
+parser = argparse.ArgumentParser(
+    description="P1DS 1-D convection-diffusion equation solver.")
+parser.add_argument('-o', '--output', type=str,
+                    default='fileout', help="fileout output file.")
+parser.add_argument('-p', '--parameter', type=int,
+                    default=1001, help="NX parameter for max array lengths.")
+parser.add_argument('-i', '--input', nargs='?', type=str,
+                    default='parameter.json', help="parameter json file for input.")
+args = parser.parse_args()
 
 
 # MAIN Driver
 if __name__ == "__main__":
     ''' MAIN driver '''
-    # CLI argument parser for P1DS
-    parser = argparse.ArgumentParser(
-        description="P1DS 1-D convection-diffusion equation solver.")
-    parser.add_argument('-o', '--output', type=str,
-                        default='fileout', help="fileout output file.")
-    parser.add_argument('-p', '--parameter', type=int,
-                        default=1001, help="NX parameter for max array lengths.")
-    parser.add_argument('-i', '--input', nargs='?', type=str,
-                        default='parameter.json', help="parameter json file for input.")
-    args = parser.parse_args()
 
     # clear screen
     if platform.system() == "Windows":
         subprocess.Popen("cls", shell=True).communicate()
     elif platform.system() == "Linux":
         subprocess.Popen("clear", shell=True).communicate()
-    else:
-        click.clear()
-    # print banner
-    fig = Figlet(font="banner3")
-    # print(fig.renderText("P1DS"))
-    puts(colored.yellow(fig.renderText("P1DS")))
 
-    click.secho(f"Document: {__doc__}", fg="green", bold=True)
-    click.secho(f"Author: {__author__}", fg="yellow", bold=True)
-    click.secho(f"Version: {__version__}", fg="yellow", bold=True)
-    click.secho(f"Date: {__date__}", fg="yellow", bold=True)
-    click.echo("\n\n*** P 1 D S ***\n\n")
+    print(f"\n\n<*  P 1 D S  *>\n\n")
+
+    print(f"{__doc__}")
+    print(f"Author: {__author__}")
+    print(f"Version: {__version__}")
+    print(f"Date: {__date__}")
+    print("\n\n*** P 1 D S ***\n\n")
 
     # parameter NX
     NX: int = args.parameter

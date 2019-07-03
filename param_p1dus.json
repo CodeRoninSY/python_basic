@@ -1,21 +1,25 @@
 {
     "setting": [
         {
-            "title" : "P1DS Input Parameters",
+            "title" : "P1DUS Input Parameters",
             "den"   : 1.0,
             "vel"   : 1.0,
-            "dif"   : 0.02,
+            "dif"   : 0.01,
+            "dt"    : 0.01,
+            "ntmax" : 200,
+            "ntpr"  : 200,
             "fi0"   : 0.0,
             "fin"   : 1.0,
-            "ic"    : 1,
+            "ic"    : 2,
+            "it"    : 3,
             "xmin"  : 0.0,
             "xmax"  : 1.0,
             "ex"    : 1.0,
-            "n"     : 51,
-            "isolv" : 2,
+            "n"     : 101,
+            "isolv" : 1,
             "omega" : 1.2,
-            "epsil" : 1E-16,
-            "maxit" : 10000,
+            "epsil" : 1E-12,
+            "maxit" : 500,
             "residf": "residual.csv",
             "rstout": "result.csv"
     }]
