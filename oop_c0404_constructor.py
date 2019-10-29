@@ -35,18 +35,28 @@ CATBREEDFILE = "cat_breed.csv"
 
 class Animal(object):
     """ Animal """
+    count = 0
+
     def __init__(self, name):
         self.name = name
+        Animal.count += 1
 
     def eat(self, food):
         print('{0} eats {1}'.format(self.name, food))
 
+    @classmethod
+    def get_count(cls):
+        return cls.count
+
 
 class Dog(Animal):
     """ Dog """
+    count = 0
+
     def __init__(self, name):
         super(Dog, self).__init__(name)
         self.breed = [random.choice(get_breed(DOGBREEDFILE))]
+        Dog.count += 1
 
     def fetch(self, thing):
         print('{0} goes after the {1]!'.format(self.name, thing))
@@ -57,9 +67,11 @@ class Dog(Animal):
 
 class Cat(Animal):
     """ Cat """
+    count = 0
     def __init__(self, name):
         super(Cat, self).__init__(name)
         self.breed = [random.choice(get_breed(CATBREEDFILE))]
+        Cat.count += 1
 
     def swatstring(self):
         print('{0} shreds the string!'.format(self.name))
@@ -89,6 +101,7 @@ def save_breed_from_web(url, file=CATBREEDFILE, table='cat'):
 
 
 def get_breed(breedfile=CATBREEDFILE):
+    """ get_breed from generated 'BREEDFILE' """
     cur_dir = os.path.dirname(os.path.abspath(__file__))
     with open(os.path.join(cur_dir, breedfile)) as data:
         breed = [br.rstrip() for br in data]
@@ -106,20 +119,26 @@ def main():
 
     cur_dir = os.path.dirname(os.path.abspath(__file__))
     # print("cur_dir: {}, __file__: {}".format(cur_dir, __file__))
+    # read dog & cat names from files
     with open(os.path.join(cur_dir, DOGNAMESF)) as data:
         dogname = [d.rstrip() for d in data]
     with open(os.path.join(cur_dir, CATNAMESF)) as data:
         catname = [c.rstrip() for c in data]
-
-    d = Dog(random.choice(dogname))
-    c = Cat(random.choice(catname))
-
-    print(
-        "Dog name: {},\tBreed: {}".format(
-        d.name, d.breed[0].split(',')[1:3]))
-    print(
-        "Cat name: {},\tBreed: {}".format(
-            c.name, c.breed[0].split(',')[1:3]))
+    # populate Dog instances
+    for i in range(int(len(dogname)/19)):
+        d = Dog(random.choice(dogname))
+        print(
+            "Dog name: {},\tBreed: {}".format(
+                d.name, d.breed[0].split(',')[1:3]))
+    # populate Cat instances
+    for i in range(int(len(catname)/19)):
+        c = Cat(random.choice(catname))
+        print(
+            "Cat name: {},\tBreed: {}".format(
+                c.name, c.breed[0].split(',')[1:3]))
+    # Dog & Cat counts
+    print("Dog count: {}".format(d.get_count()))
+    print("Cat count: {}".format(c.get_count()))
 
 
 if __name__ == "__main__":
