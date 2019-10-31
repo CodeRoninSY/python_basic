@@ -33,6 +33,16 @@ DOGBREEDFILE = "dog_breed.csv"
 CATBREEDFILE = "cat_breed.csv"
 
 
+class WriteFile(object):
+    """ WriteFile """
+    def __init__(self, writer, deftxt=""):
+        self.writer = writer
+        self.deftxt = deftxt
+
+    def write(self, text=""):
+        self.writer.write(text)
+
+
 class Animal(object):
     """ Animal """
     count = 0
@@ -109,6 +119,10 @@ def get_breed(breedfile=CATBREEDFILE):
 
 
 def main():
+    """ main """
+    wrt = open('Dog_cat_random_names.txt', 'w+')
+    w = WriteFile(wrt)
+
     # download Breed names from wiki pages
     # save_breed_from_web(
     #     'https://en.wikipedia.org/wiki/List_of_dog_breeds',
@@ -124,21 +138,27 @@ def main():
         dogname = [d.rstrip() for d in data]
     with open(os.path.join(cur_dir, CATNAMESF)) as data:
         catname = [c.rstrip() for c in data]
+
     # populate Dog instances
     for i in range(int(len(dogname)/19)):
         d = Dog(random.choice(dogname))
         print(
             "Dog name: {},\tBreed: {}".format(
-                d.name, d.breed[0].split(',')[1:3]))
+                d.name, d.breed[0].split(',')[1:3]),file=w)
+
     # populate Cat instances
     for i in range(int(len(catname)/19)):
         c = Cat(random.choice(catname))
         print(
             "Cat name: {},\tBreed: {}".format(
-                c.name, c.breed[0].split(',')[1:3]))
+                c.name, c.breed[0].split(',')[1:3]),file=w)
     # Dog & Cat counts
     print("Dog count: {}".format(d.get_count()))
     print("Cat count: {}".format(c.get_count()))
+
+    w.write("Dog count: {}\n".format(d.get_count()))
+    w.write("Cat count: {}\n".format(c.get_count()))
+    wrt.close()
 
 
 if __name__ == "__main__":
