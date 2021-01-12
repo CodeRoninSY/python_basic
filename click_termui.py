@@ -3,6 +3,8 @@
 click_termui.py
 <2019-04-28> CodeRoninSY
 
+https://click.palletsprojects.com/en/7.x/
+
 '''
 
 import math

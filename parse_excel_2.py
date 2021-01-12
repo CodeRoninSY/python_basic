@@ -1,16 +1,16 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 """
-    parse_excel_2.py
+parse_excel_2.py
 
-    Synopsis: Tkinter GUI app for parse excel file
+Synopsis: Tkinter GUI app for parse excel file
 
-    This is a script to parse child labor and child marriage data.
-    The excel file used in this script can be found here:
-        http://www.unicef.org/sowc2014/numbers/
+This is a script to parse child labor and child marriage data.
+The excel file used in this script can be found here:
+    http://www.unicef.org/sowc2014/numbers/
 
-    Author: CodeRoninSY
-    Date: <2019-06-22>
+Author: CodeRoninSY
+Date: <2019-06-22>
 """
 
 import argparse
@@ -56,11 +56,18 @@ def getCountry():
 
 def excelRead():
     ''' main '''
-    import_path = filedialog.askopenfilename()
+    import_path = filedialog.askopenfilename( \
+        initialdir=".", title="Select file",
+        filetypes=(("Excel files", "*.xls"), ("Excel xlsx", "*.xlsx"),
+        ("All files","*.*"))
+    )
 
     # open workbook
     book = xlrd.open_workbook(import_path,
                               logfile=logf, verbosity=args.verbose)
+
+    OPTIONS = book.sheet_names()
+    print(f"sheet_names: {OPTIONS}")
 
     sheet = book.sheet_by_name(OPTIONS[1])
 

@@ -11,26 +11,24 @@ Dev: CodeRoninSY
 Date: <2019-05-13>
 
 Note:
-    1. added multi args for class methods
+    1. This is baseline code
 
 '''
 
 
 class Operations:
-    ''' Operations class '''
-    def say_hi(self, *name):
-        print('Hello,', " ".join(*name))
+    def say_hi(self, name):
+        print('Hello,', name)
 
-    def say_bye(self, *name):
-        print('Goodbye,', " ".join(*name))
+    def say_bye(self, name):
+        print('Goodbye,', name)
 
     def default(self, arg):
         print('This operation is not supported.')
 
 
 if __name__ == '__main__':
-    ''' main() '''
     operations = Operations()
     # let's assume error handling
-    command, *argument = input('$>> ').split()
+    command, argument = input('$>> ').split()
     getattr(operations, command, operations.default)(argument)

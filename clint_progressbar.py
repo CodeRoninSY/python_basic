@@ -9,6 +9,7 @@ sys.path.insert(0, os.path.abspath('..'))
 from time import sleep
 from random import random
 from clint.textui import progress
+from pprint import pprint
 
 
 if __name__ == '__main__':
@@ -32,3 +33,5 @@ if __name__ == '__main__':
     D = dict(zip(range(100), range(100)))
     for k, v in progress.bar(D.items(), expected_size=len(D)):
         sleep(random() * 0.05)
+
+    # pprint(D)
